@@ -1,0 +1,3 @@
+class Constants {
+  static final mondyApiToken = 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjI0ODk4ODMxLCJ1aWQiOjExMDE2MzQ2LCJpYWQiOiIyMDE5LTEwLTIwIDE2OjQ3OjQzIFVUQyIsInBlciI6Im1lOndyaXRlIn0.TfadSRu4wQVfDjPmzg7AzqUWck-KVbS73eUgTX6TbEs';
+}
