@@ -25,15 +25,17 @@ class User {
       this.photoThumb});
 
   static User formLazyCacheMap(LazyCacheMap map) {
-    return User(
-        id: map['id'],
-        title: map['title'],
-        email: map['email'],
-        mobilePhone: map['mobile_phone'],
-        name: map['name'],
-        phone: map['phone'],
-        url: map['url'],
-        photoOriginal: map['photo_original'],
-        photoThumb: map['photo_thumb']);
+    return map != null
+        ? User(
+            id: map['id'],
+            title: map['title'],
+            email: map['email'],
+            mobilePhone: map['mobile_phone'],
+            name: map['name'],
+            phone: map['phone'],
+            url: map['url'],
+            photoOriginal: map['photo_original'],
+            photoThumb: map['photo_thumb'])
+        : null;
   }
 }
