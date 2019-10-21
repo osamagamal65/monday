@@ -2,7 +2,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:monday/models/user.dart';
 
 class Update {
-  final int id;
+  final String id;
   final String body;
   final DateTime createdTime;
   final User creator;

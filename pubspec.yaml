@@ -12,7 +12,8 @@ dependencies:
   cupertino_icons: ^0.1.2
   scoped_model: ^1.0.1
   graphql_flutter: ^2.1.0
-
+  fancy_bottom_navigation: ^0.3.2
+  flutter_swiper: ^1.1.6
 dev_dependencies:
   flutter_test:
     sdk: flutter

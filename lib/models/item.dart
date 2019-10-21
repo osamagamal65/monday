@@ -6,6 +6,7 @@ import 'package:monday/models/user.dart';
 
 class Item {
   final String name;
+  final String state;
   final String id;
   final List<Tag> tags;
   final List<Update> updates;
@@ -15,6 +16,7 @@ class Item {
   Item(
       {this.name,
       this.id,
+      this.state,
       this.updates,
       this.tags,
       this.board,
@@ -25,6 +27,7 @@ class Item {
     return Item(
         id: map['id'],
         name: map['name'],
+        state: map['state'],
         board: Board.fromLazyCacheMap(map['board']),
         creator: User.formLazyCacheMap(map['creator']),
         group: Group.fromLazyCacheMap(map['group']),

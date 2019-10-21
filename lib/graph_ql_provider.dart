@@ -1,6 +1,8 @@
-String mondayBoards = """
+class QueryHelper {
+  static String mondayBoards(boardId) {
+    return """
 query {
-  boards(ids: 353654313) {
+  boards(ids: $boardId) {
     name
     state
     board_kind
@@ -66,3 +68,5 @@ query {
   }
 }
 """;
+  }
+}
