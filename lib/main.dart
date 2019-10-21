@@ -13,7 +13,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Monday',
         theme: ThemeData(
-            primarySwatch: Colors.pink,
+            primarySwatch: Colors.blue,
+            primaryColor: Color(0xff07a3b2),
+            accentColor: Color(0xffd9ecc7),
             textTheme: TextTheme(
                 title: TextStyle(color: Colors.white, fontSize: 24.0))),
         home: HomePage(),

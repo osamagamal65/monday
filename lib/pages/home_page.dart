@@ -5,6 +5,8 @@ import 'package:monday/graph_ql_provider.dart';
 import 'package:monday/models/board.dart';
 import 'package:monday/models/group.dart';
 import 'package:monday/widgets/board-widget.dart';
+import 'package:monday/widgets/board_query_widget.dart';
+import 'package:monday/widgets/daynamic_baord.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -32,11 +34,13 @@ class _HomePageState extends State<HomePage> {
               builder: (context) {
                 switch (currentPage) {
                   case 0:
-                    return _buildBoard('353719226');
+                    return BoardQueryWidget(boardId: '353719226');
                   case 1:
-                    return _buildBoard('354704297');
+                    return BoardQueryWidget(boardId: '354704297');
                   case 2:
-                    return _buildBoard('354716150');
+                    return BoardQueryWidget(boardId: '354716150');
+                  case 3:
+                    return DynamicBoard();
                 }
               },
             ),
@@ -49,7 +53,8 @@ class _HomePageState extends State<HomePage> {
             tabs: [
               TabData(iconData: Icons.list, title: "Team Tasks"),
               TabData(iconData: Icons.calendar_today, title: "Feature Backlog"),
-              TabData(iconData: Icons.book, title: "Programming language")
+              TabData(iconData: Icons.book, title: "Programming language"),
+              TabData(iconData: Icons.open_in_new, title: 'Dynamic')
             ],
             onTabChangedListener: (position) {
               setState(() {
@@ -57,63 +62,6 @@ class _HomePageState extends State<HomePage> {
               });
             },
           )),
-    );
-  }
-
-  Widget _buildLoadingScaffold() {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.width,
-      child: Center(
-        child: Text('Loading'),
-      ),
-    );
-  }
-
-  Widget _buildErrorScaffold(List<GraphQLError> errors) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.width,
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: errors.map((error) => Text(error.message)).toList(),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildBoard(String boardId) {
-    return Query(
-      options: QueryOptions(
-        document: QueryHelper.mondayBoards(boardId),
-        // variables: {
-        //   'nRepositories': 50,
-        // },
-        pollInterval: 10,
-      ),
-      builder: (QueryResult result,
-          {VoidCallback refetch, FetchMore fetchMore}) {
-        if (result.errors != null) {
-          return _buildErrorScaffold(result.errors);
-        } else if (result.loading) {
-          return _buildLoadingScaffold();
-        }
-        Board board = Board.fromLazyCacheMap(result.data['boards'][0]);
-        print(board);
-        return Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.width,
-          color: Colors.white,
-          child: Center(
-              child: SingleChildScrollView(
-            child: BoardWidget(
-              board: board,
-            ),
-          )),
-        );
-      },
     );
   }
 }
